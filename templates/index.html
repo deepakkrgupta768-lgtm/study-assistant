@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AI Study Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <div class="header-left">
+                <button id="sidebar-toggle" class="icon-btn" aria-label="Toggle menu">☰</button>
+                <h1>📚 Study Assistant</h1>
+            </div>
+            <div class="header-right">
+                <button id="new-chat-btn" class="icon-btn" aria-label="New chat">✏️</button>
+                <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">🌙</button>
+            </div>
+        </header>
+
+        <div id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h2>Chats</h2>
+                <button id="new-chat-sidebar" class="btn-primary small">+ New</button>
+            </div>
+            <div id="chat-list"></div>
+            <div class="sidebar-footer">
+                <div class="api-status" id="api-status">
+                    <span class="status-dot loading"></span> Gemini AI
+                </div>
+            </div>
+        </div>
+        <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+        <main id="main-content">
+            <div id="welcome-screen" class="welcome-screen">
+                <div class="welcome-icon">📚</div>
+                <h2>Your AI Study Assistant</h2>
+                <p>Ask me anything about your studies — I'll help you learn!</p>
+                <div class="suggestions">
+                    <button class="suggestion-chip" data-q="Explain quantum physics simply">🔬 Quantum physics</button>
+                    <button class="suggestion-chip" data-q="Help me with calculus derivatives">📐 Calculus help</button>
+                    <button class="suggestion-chip" data-q="Summarize World War II">📖 WWII summary</button>
+                    <button class="suggestion-chip" data-q="How does photosynthesis work?">🌿 Photosynthesis</button>
+                    <button class="suggestion-chip" data-q="Tips for memorizing vocabulary">🧠 Study tips</button>
+                    <button class="suggestion-chip" data-q="Explain the water cycle">💧 Water cycle</button>
+                </div>
+            </div>
+
+            <div id="chat-container" class="chat-container hidden">
+                <div id="messages"></div>
+            </div>
+
+            <div id="typing-indicator" class="typing-indicator hidden">
+                <span></span><span></span><span></span>
+                <span class="typing-text">Thinking...</span>
+            </div>
+
+            <div id="input-area" class="input-area">
+                <form id="message-form" autocomplete="off">
+                    <input
+                        type="text"
+                        id="message-input"
+                        placeholder="Ask a study question..."
+                        autofocus
+                    >
+                    <button type="submit" id="send-btn" class="btn-primary send-btn" disabled>
+                        Send
+                    </button>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
